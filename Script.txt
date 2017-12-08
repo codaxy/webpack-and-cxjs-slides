@@ -1,0 +1,44 @@
+Webpack features commonly used with CxJS based apps
+
+What is webpack?
+
+What Webpack offers?
+
+What is CxJS?
+
+What CxJS has to offer?
+
+Why CxJS?
+
+Bootstrapping a new CxJS app using CLI?
+
+webpack configuration
+	- babel-loader
+	- sass-loader
+	
+webpack.config.configuration	
+webpack-development-server
+style-loader
+hot-module-replacement
+CxJS store concept
+proxy for api calls
+
+code-splitting
+Routing in CxJS
+docs.cxjs.io
+gallery.cxjs.io
+
+production webpack.config.js
+long-term-caching
+webpack-bundle-analyzer
+
+
+
+
+
+
+
+
+
+
+
