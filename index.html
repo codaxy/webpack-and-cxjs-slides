@@ -4,13 +4,25 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>reveal.js</title>
+    <title>webpack & CxJS</title>
 
     <link rel="stylesheet" href="css/reveal.css">
-    <link rel="stylesheet" href="css/theme/black.css">
+    <link rel="stylesheet" href="css/theme/solarized.css">
 
     <!-- Theme used for syntax highlighting of code -->
     <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <style>
+        img.hollow {
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .tt-none {
+            text-transform: none !important;
+        }
+    </style>
 
     <!-- Printing and PDF exports -->
     <script>
@@ -25,9 +37,9 @@
 <div class="reveal">
     <div class="slides">
         <section>
-            <img src="img/webpack-logo.svg" style="height: 150px; border: none; background: none; margin-right: 50px;"/>
-            <img src="img/cxjs-logo.svg" style="height: 150px; border: none; background: none; margin-left: 50px;"/>
-            <h1 style="text-transform: uppercase">webpack & CxJS</h1>
+            <img src="img/webpack-logo.svg" style="height: 150px; margin-right: 50px;" class="hollow"/>
+            <img src="img/cxjs-logo.svg" style="height: 150px; margin-left: 50px;" class="hollow"/>
+            <h1 class="tt-none">WEBPACK & CxJS</h1>
             <h5>Overview of Webpack features used in development of CxJS apps</h5>
             <p>
                 <small>
@@ -40,18 +52,64 @@
             <section>
                 <h2>What is webpack?</h2>
                 <img src="img/what-is-webpack.png"/>
+                <p>
+                    <a href="https://webpack.js.org/">https://webpack.js.org/</a>
+                </p>
             </section>
 
             <section>
-                <h3>webpack Features</h3>
+                <h3>Features</h3>
 
                 <ul>
                     <li>Asset Bundling</li>
                     <li>Development Server</li>
                     <li>Code Splitting</li>
-                    <li>Asset Optimization</li>
+                    <li>Production</li>
+                </ul>
+
+
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>What is CxJS?</h2>
+                <img src="img/what-is-cxjs.png" class="hollow" style="height: 400px"/>
+                <p>
+                    <a href="https://cxjs.io/">https://cxjs.io/</a>
+                </p>
+            </section>
+
+            <section>
+                <h3>Features</h3>
+
+                <ul>
+                    <li>Widgets</li>
+                    <li>Charts</li>
+                    <li>Layout</li>
+                    <li>Themes</li>
+                    <li>Routing</li>
+                    <li>Localization</li>
                 </ul>
             </section>
+
+            <section>
+                <h3>Getting Started</h3>
+
+                <p>(Node.js required)</p>
+
+                <pre><code data-trim data-noescape class="bash">
+md demo-app
+cd demo-app
+npm init -y
+npm install cx-cli --global
+cx scaffold
+npm start
+	            </code></pre>
+
+                <p><small><a href="https://github.com/">Source Code</a> - <a href="https://github.com/">Demo</a></small></p>
+            </section>
+
         </section>
     </div>
 </div>
@@ -64,6 +122,7 @@
     // - https://github.com/hakimel/reveal.js#configuration
     // - https://github.com/hakimel/reveal.js#dependencies
     Reveal.initialize({
+        history: true,
         dependencies: [
             {src: 'plugin/markdown/marked.js'},
             {src: 'plugin/markdown/markdown.js'},
