@@ -61,10 +61,10 @@
                 <h3>Features</h3>
 
                 <ul>
-                    <li>Asset Bundling</li>
+                    <li>Asset Loading</li>
                     <li>Development Server</li>
                     <li>Code Splitting</li>
-                    <li>Production</li>
+                    <li>Bundling & Production</li>
                 </ul>
 
 
@@ -106,10 +106,181 @@ npm install cx-cli --global
 cx scaffold
 npm start
 	            </code></pre>
-
-                <p><small><a href="https://github.com/">Source Code</a> - <a href="https://github.com/">Demo</a></small></p>
             </section>
 
+            <section>
+                <h3>Demo App</h3>
+
+                <img src="img/demo-app.png" style="height: 450px"/>
+
+                <p>
+                    <small>
+                        <a href="https://github.com/mstijak/webpack-and-cxjs-demo-app">Source Code</a>
+                    </small>
+                </p>
+            </section>
+
+        </section>
+
+        <section>
+            <section>
+                <h2>Webpack Configuration</h2>
+
+                <pre><code data-trim data-noescape class="js">
+const path = require('path');
+
+const config = {
+  entry: './path/to/my/entry/file.js',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'my-first-webpack.bundle.js'
+  },
+  module: {
+    rules: [
+      { test: /\.js/, use: 'babel-loader' }
+    ]
+  },
+  plugins: []
+};
+
+module.exports = config;
+	            </code></pre>
+
+                <p>
+                    <small>
+                        <a href="https://webpack.js.org">Webpack Docs</a>
+                    </small>
+                </p>
+            </section>
+            <section>
+                <h3>Webpack Loaders</h3>
+
+                <p style="text-align: left">webpack loaders transform all types of files into your application's dependency graph:</p>
+
+                <ul>
+                    <li>
+                        ES6 (Babel)
+                    </li>
+                    <li>
+                        TypeScript
+                    </li>
+                    <li>
+                        CSS, Sass, PostCSS
+                    </li>
+                    <li>
+                        Images
+                    </li>
+                    <li>
+                        Icons & Fonts
+                    </li>
+                </ul>
+
+
+            </section>
+
+            <section>
+                <h3>babel-loader</h3>
+
+                <pre><code data-trim data-noescape class="js">
+{
+    test: /\.js$/,
+    //register here any ES6 based library
+    include: (app|cx|cx-react|cx-google-maps)[\\\/]/,
+    loader: 'babel-loader',
+    query: {
+        presets: [
+            ["cx-env", {
+                targets: {
+                   chrome: 50,
+                   ie: 11,
+                   ff: 30,
+                   edge: 12,
+                   safari: 9
+                },
+                modules: false,
+                loose: true,
+                useBuiltIns: true,
+                cx: {
+                   imports: {
+                      useSrc: true
+                   }
+                }
+            }]
+        ]
+    }
+}
+	            </code></pre>
+            </section>
+
+            <section>
+                <h3>webpack-development-server</h3>
+
+                <pre><code data-trim data-noescape class="js">
+plugins: [
+    new webpack.HotModuleReplacementPlugin()
+],
+devServer: {
+    hot: true,
+    port: 8088,
+    inline: true,
+    historyApiFallback: true,
+    proxy: {
+        '/api': {
+            target: 'https://other-server.example.com',
+            secure: false
+        }
+    }
+}
+	            </code></pre>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Hot Module Replacement (HMR)</h2>
+
+                <br/>
+                <br/>
+
+                <ul>
+                    <li>Retain application state</li>
+                    <li>Tweak styling faster</li>
+                    <li>Works best with two screens</li>
+                </ul>
+
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+
+            </section>
+
+            <section>
+                <h2>HMR (in the app)</h2>
+
+                <pre><code data-trim data-noescape class="js">
+//CxJS store
+const store = new Store();
+
+//webpack (HMR)
+if (module.hot) {
+   //register module for HMR
+   module.hot.accept();
+
+   // remember data on dispose
+   module.hot.dispose(function (data) {
+      data.state = store.getData();
+      if (stop)
+         stop();
+   });
+
+   //apply data on hot replace
+   if (module.hot.data)
+      store.load(module.hot.data.state);
+}
+	            </code></pre>
+
+            </section>
         </section>
     </div>
 </div>
@@ -129,8 +300,8 @@ npm start
             {src: 'plugin/notes/notes.js', async: true},
             {
                 src: 'plugin/highlight/highlight.js', async: true, callback: function () {
-                hljs.initHighlightingOnLoad();
-            }
+                    hljs.initHighlightingOnLoad();
+                }
             }
         ]
     });
