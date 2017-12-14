@@ -58,7 +58,7 @@
             </section>
 
             <section>
-                <h3>Features</h3>
+                <h3>Main Features</h3>
 
                 <ul>
                     <li>Asset Loading</li>
@@ -81,7 +81,7 @@
             </section>
 
             <section>
-                <h3>Features</h3>
+                <h3>Main Features</h3>
 
                 <ul>
                     <li>Widgets</li>
@@ -233,41 +233,32 @@ module.exports = config;
                 <h2>webpack-development-server</h2>
 
                 <pre><code data-trim data-noescape class="js">
-plugins: [
-    new webpack.HotModuleReplacementPlugin()
-],
 devServer: {
-    hot: true,
     port: 8088,
-    inline: true,
     historyApiFallback: true,
     proxy: {
         '/api': {
             target: 'https://other-server.example.com',
             secure: false
         }
-    }
-}
+    },
+    hot: true,
+    inline: true
+},
+plugins: [
+    new webpack.HotModuleReplacementPlugin()
+]
 	            </code></pre>
             </section>
 
             <section>
                 <h3>Hot Module Replacement (HMR)</h3>
 
-                <br/>
-                <br/>
-
                 <ul>
                     <li>Retain application state</li>
                     <li>Tweak styling faster</li>
                     <li>Works best with two screens</li>
                 </ul>
-
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-
             </section>
 
             <section>
