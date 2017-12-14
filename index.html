@@ -98,10 +98,12 @@
                 <ul>
                     <li><a href="https://home-expenses.cxjs.io/dashboard" target="_blank">Home Expenses</a></li>
                     <li><a href="https://dashboards.cxjs.io/" target="_blank">Dashboards</a></li>
-                    <li><a href="https://cxjs.io/starter/dashboards/sales" target="_blank">Starter Kit</a></li>
+                    <li><a href="https://starter.cxjs.io/dashboards/sales" target="_blank">Starter Kit</a></li>
+                    <li><a href="https://worldoscope.cxjs.io/" target="_blank">Worldoscope</a></li>
                     <li><a href="https://hn.cxjs.io/" target="_blank">Hacker News PWA</a></li>
                     <li><a href="https://mstijak.github.io/tdo/" target="_blank">tdo</a></li>
-                    <li><a href="https://codaxy.github.io/state-of-js-2016-explorer/" target="_blank">State of JS 2016</a></li>
+                    <li><a href="https://codaxy.github.io/state-of-js-2016-explorer/" target="_blank">State of JS
+                        2016</a></li>
                 </ul>
             </section>
 
@@ -167,7 +169,8 @@ module.exports = config;
             <section>
                 <h3>Webpack Loaders</h3>
 
-                <p style="text-align: left">webpack loaders transform all types of files into your application's dependency graph:</p>
+                <p style="text-align: left">webpack loaders transform all types of files into your application's
+                    dependency graph:</p>
 
                 <ul>
                     <li>
@@ -223,9 +226,11 @@ module.exports = config;
 }
 	            </code></pre>
             </section>
+        </section>
 
+        <section>
             <section>
-                <h3>webpack-development-server</h3>
+                <h2>webpack-development-server</h2>
 
                 <pre><code data-trim data-noescape class="js">
 plugins: [
@@ -245,11 +250,9 @@ devServer: {
 }
 	            </code></pre>
             </section>
-        </section>
 
-        <section>
             <section>
-                <h2>Hot Module Replacement (HMR)</h2>
+                <h3>Hot Module Replacement (HMR)</h3>
 
                 <br/>
                 <br/>
@@ -268,7 +271,7 @@ devServer: {
             </section>
 
             <section>
-                <h2>HMR (in the app)</h2>
+                <h3>HMR (in the app)</h3>
 
                 <pre><code data-trim data-noescape class="js">
 //CxJS store
@@ -293,6 +296,90 @@ if (module.hot) {
 	            </code></pre>
 
             </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Code-splitting</h2>
+
+                <p>
+                    Splits your codebase into “chunks” which are loaded on demand.
+                    You define split points in your code and
+                    Webpack takes care of the dependencies, output files and runtime stuff.
+                </p>
+
+            </section>
+
+            <section>
+                <h3>Benefits</h3>
+                <p>
+                <ul>
+                    <li>
+                        Startup performance
+                    </li>
+                    <li>
+                        Caching per chunk
+                    </li>
+                    <li>
+                        Saved bandwidth
+                    </li>
+                </ul>
+                </p>
+            </section>
+
+            <section>
+                <h3>Split Points</h3>
+
+                <pre><code data-trim data-noescape class="js">
+import(/* webpackChunkName: 'map' */ "./map")
+  .then(module => {
+    //do stuff with map loaded
+  });
+	            </code></pre>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Bundling & Production</h2>
+
+                <pre><code data-trim data-noescape class="js">
+plugins: [
+    new webpack.DefinePlugin({
+        'process.env.NODE_ENV': JSON.stringify('production')
+    }),
+    new webpack.optimize.ModuleConcatenationPlugin(),
+    new webpack.optimize.UglifyJsPlugin()
+]
+	                </code></pre>
+            </section>
+
+            <section>
+                <h3>Long-Term Caching</h3>
+
+                <pre><code data-trim data-noescape class="js">
+output: {
+    filename: "[name].[chunkhash].js",
+    chunkFilename: '[name].[chunkhash].js',
+    hashDigestLength: 5,
+}
+	            </code></pre>
+            </section>
+
+            <section>
+                <h3>Bundle Analyzer</h3>
+                <img src="img/bundle-analyzer.png" style="height: 500px"/>
+            </section>
+        </section>
+
+        <section>
+            <h2>Contact</h2>
+            <ul>
+                <li>marko.stijak@codaxy.com</li>
+                <li>twitter.com/mstijak</li>
+                <li>twitter.com/codaxy</li>
+                <li>github.com/codaxy</li>
+            </ul>
         </section>
     </div>
 </div>
