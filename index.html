@@ -336,7 +336,7 @@ plugins: [
     new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify('production')
     }),
-    new webpack.optimize.ModuleConcatenationPlugin(),
+    new webpack.optimize.ModuleConcatenationPlugin(), // scope hoisting
     new webpack.optimize.UglifyJsPlugin()
 ]
 	                </code></pre>
